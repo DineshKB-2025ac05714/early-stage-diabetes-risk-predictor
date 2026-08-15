@@ -92,6 +92,17 @@ def validate_dataset(df):
         print(df[col].unique())
 
 
+# Function to seperate input features and target
+def prepare_features_target(df):
+
+    X = df.drop(columns=[target_column])
+    y = df[target_column].map({
+        "Negative": 0,
+        "Positive": 1
+    })
+
+    return X, y
+
 # Function to perform 80/20 stratified split
 # Performing 80/20 Stratified split.
 
