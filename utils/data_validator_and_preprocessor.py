@@ -17,8 +17,10 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 # Configuration specific to  early diabetic prediction dataset
 
 
-RANDOM_SEED = 11 # Random seed, 11 is my lucky number :)
+DATA_PATH = "data/diabetes_data.csv" # Dataset file location
+R_SEED = 11  # Fixed seed for reproducible train-test split
 TEST_SIZE = 0.20 # 80/20 split
+ITERATION=1500 # No. of iterations
 
 # Target Column
 target_column = "class"
@@ -118,7 +120,7 @@ def split_dataset(X, y):
         X,
         y,
         test_size=TEST_SIZE,
-        random_state=RANDOM_SEED,
+        random_state=R_SEED,
         stratify=y
     )
 
