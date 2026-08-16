@@ -18,6 +18,7 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 
 DATA_PATH = "data/diabetes_data.csv" # Dataset file location
+TEST_FILE = "test_data.csv"
 R_SEED = 11  # Fixed seed for reproducible train-test split
 TEST_SIZE = 0.20 # 80/20 split
 ITERATION=1500 # No. of iterations
@@ -105,6 +106,23 @@ def prepare_features_target(df):
 
     return X, y
 
+# Function to save test data
+def save_test_data(X_test, y_test, file_path):
+    """
+    Save the test dataset including the original target labels.
+    """
+    test_data = X_test.copy()
+
+    test_data["class"] = y_test.map({
+        0: "Negative",
+        1: "Positive"
+    })
+
+    test_data.to_csv(
+        file_path,
+        index=False
+    )
+
 # Function to perform 80/20 stratified split
 # Performing 80/20 Stratified split.
 
@@ -123,7 +141,8 @@ def split_dataset(X, y):
         random_state=R_SEED,
         stratify=y
     )
-
+    # Save the test data into CSV file
+    save_test_data(X_test, y_test, TEST_FILE)
     return X_train, X_test, y_train, y_test
 
 # Function to pre-process dataset
