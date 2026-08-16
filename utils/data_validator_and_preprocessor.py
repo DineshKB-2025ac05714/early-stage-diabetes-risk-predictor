@@ -3,8 +3,6 @@
 # --------------------------------------------------------
 
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 
 from sklearn.model_selection import train_test_split
 from sklearn.compose import ColumnTransformer
@@ -21,7 +19,7 @@ DATA_PATH = "data/diabetes_data.csv" # Dataset file location
 TEST_FILE = "test_data.csv"
 R_SEED = 11  # Fixed seed for reproducible train-test split
 TEST_SIZE = 0.20 # 80/20 split
-ITERATION=1500 # No. of iterations
+ITERATION = 1500 # No. of iterations
 
 # Target Column
 target_column = "class"
@@ -49,7 +47,7 @@ categorical_columns = [
 numerical_columns = ["Age"]
 
 # --------------------------------------------------------
-# Function defintions
+# Function definitions
 # --------------------------------------------------------
 
 
@@ -95,7 +93,7 @@ def validate_dataset(df):
         print(df[col].unique())
 
 
-# Function to seperate input features and target
+# Function to separate input features and target
 def prepare_features_target(df):
 
     X = df.drop(columns=[target_column])
